@@ -1,0 +1,61 @@
+<style>
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #566586;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1))
+  }
+</style>
+<section class="gradient-custom">
+  <div style="height: 35rem;" class="pt-4">
+    <div class="container">
+      <h4 class="mt-3 text-dark fw-bold">Deliverd Orders</h4>
+      <div style="width: 150px;" class="row  ms-auto pt-4">
+
+      </div>
+
+      <table class="table bg-white table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mobile no</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Payment</th>
+            <th scope="col">current status</th>
+            {{!-- <th scope="col">Approve shipping</th> --}}
+
+          </tr>
+        </thead>
+        <tbody class="fw-bold">
+          {{#each orders}}
+        
+
+          <tr>
+            <th>{{this.date}}</th>
+            <td> {{this.address}} </td>
+            <td> {{this.deliveryDetails.mobile}} </td>
+            <td> ₹{{this.totalAmount}} </td>
+            <td> {{this.paymentMethod}} </td>
+            <td>{{this.status}}</td>
+            {{!-- <td><a href="/admin/shipment-Status/{{this._id}}"  style="color: inherit;"><button
+                  class="btn btn-sm  text-white px-lg-5 px-3 bg-success " style=""><b>Update status</b></button></a></td> --}}
+
+          </tr>
+         
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</section>
+<script>
+  
+</script>

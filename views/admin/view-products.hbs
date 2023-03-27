@@ -1,0 +1,73 @@
+<style>
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #566586;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1))
+  }
+</style>
+<section class="gradient-custom" style="height: 45rem;">
+
+  <h4 class="pt-3 fw-bold ps-5">ALL PRODUCTS</h4>
+  <div class="container pt-3">
+
+
+    <div class="pt-3 float-end pe-3">
+      <a href="/admin/add-products"><button class="btn  text-white " style="background-color: #5e6e92;"><b>Add
+            Product</b></button></a>
+    </div>
+    <div class="pt-3 bg-white rounded-3 container-fluid">
+      <div class="pt-5">
+        <table class="table pt-3 " id="admintable">
+          <thead class="bg-white">
+            <tr>
+              {{!-- <th scope="col">No</th> --}}
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Image</th>
+              <th scope="col">Options</th>
+
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            {{#each products}}
+            <tr>
+              {{!-- <th scope="row">1</th> --}}
+              <td> {{this.name}} </td>
+              <td> {{this.category}} </td>
+              <td> {{this.description}} </td>
+              <td> ₹{{this.prize}} </td>
+              <td><img style="height: 60px; width: 40px; " src="/product-images/{{this._id}}.jpg"> </td>
+              <td>
+                <a href="/admin/edit-product/{{this._id}}" class=""><button class="btn fw-bold text-white"
+                    style="background-color: #566586;">Edit</button></a>
+                <a href="/admin/delete-product/{{this._id}}" class=""
+                  onclick="return confirm('Are you sure to delete {{this.name}} ?')"><button
+                    style="background-color: #cf6060;" class="btn  text-white fw-bold">Delete</button></a>
+              </td>
+            </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="text-center">
+
+  </div>
+
+</section>
+<script>
+  let table = new DataTable('#admintable');
+</script>

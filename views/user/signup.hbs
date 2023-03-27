@@ -1,0 +1,78 @@
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #cd9cf2;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to top left,rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
+    }
+  
+</style>
+<section class="gradient-custom">
+  <div class="pt-5" style="height: 35rem;">
+    <div class="pt-5 container" style="width: 21rem; height: 29rem; border-radius: 1rem; background-color: #ffffff;">
+    <div class="text-center pt-1">
+      <h3 class="text-secondary fw-bold">SIGN UP</h3>
+    </div>
+    <form action="/signup" method="post">
+    <div>
+          <div class="form-outline mb-4 pt-4">
+        <input  type="text" style="border-color: #c77fe9;" id="form2Example1" class="form-control form-control-md " name="name" placeholder="Name"
+          value="">
+        
+      </div>
+
+      <!-- Email input -->
+      <div>
+          <div class="form-outline mb-4 ">
+        <input  type="email" style="border-color: #c77fe9;" id="form2Example1" class="form-control form-control-md " name="Email" placeholder="Email"
+          value="">
+        
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" style="border-color: #c77fe9;" id="form2Example2" class="form-control form-control-md" name="Password" placeholder="Password"
+          value="" />
+        
+      </div>
+      </div>
+
+      
+
+     
+
+      <!-- Submit button -->
+      <div class="text-center  pt-3">
+        <button  style="background: #e7b0ff; color:  #c77fe9; " type="submit" class="rounded-pill btn btn-outline-light btn-block mb-4 form-control text-white"><b>SIGN UP</b></button>
+      </div>
+
+
+      <!-- Register buttons -->
+      <div class="text-center pt-3">
+        <p class="small fw-bold text-secondary">Alredy have an account ?&nbsp;&nbsp;<a style="text-decoration: none;" href="/login">Login</a></p>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-google"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
+  
+</section>

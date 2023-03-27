@@ -1,0 +1,84 @@
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #cd9cf2;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to top left,rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
+    }
+    .toggle-password-eye {
+    float: right;
+    top: -25px;
+    right: 10px;
+    position: relative;
+    cursor: pointer;
+}
+  
+</style>
+<section class="gradient-custom">
+  <div class="pt-5" style="height: 35rem;">
+    <div class="pt-5 container" style="width: 21rem; height: 29rem; border-radius: 1rem; background-color: #ffffff;">
+    <div class="text-center pt-2">
+      <h3 class="text-secondary fw-bold">LOGIN</h3>
+    </div>
+    <form action="/login" method="post">
+
+      <!-- Email input -->
+      <div>
+          <div class="form-outline mb-4 pt-5">
+        {{#if loginErr}}
+        <p class="error text-danger text-center">Invalid email or password</p>
+        {{/if}}
+        <input  type="email" style="border-color: #c77fe9;" id="form2Example1" class="form-control form-control-md  " name="Email" placeholder="Email"
+          value="">
+        
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" style="border-color: #c77fe9;" id="password" class="form-control form-control-md" name="Password" placeholder="Password" required autocomplete="current-password"/>
+        
+        
+      </div>
+      </div>
+
+
+      <!-- Submit button -->
+      <div class="text-center  pt-3">
+        <button  style="background: #e7b0ff; color:  #c77fe9; " type="submit" class=" rounded-pill btn btn-outline-light btn-block mb-4 form-control text-white"><b>LOGIN</b></button>
+      </div>
+
+
+      <!-- Register buttons -->
+      <div class="text-center pt-1">
+        <p class="small fw-bold text-secondary"><a style="text-decoration: none;" href="/forgott-pas">Forgott password</a></p>
+        <p class="small fw-bold text-secondary">Don't have an account ?&nbsp;&nbsp;<a style="text-decoration: none;" href="/signup">Register</a></p>
+
+      </div>
+    </form>
+  </div>
+  </div>
+  
+</section>
+<script>
+ const togglePasswordEye = '<i class="fa fa-eye toggle-password-eye"></i>';
+const togglePasswordEyeSlash = '<i class="fa fa-eye-slash toggle-password-eye"></i>';
+
+$(togglePasswordEyeSlash).insertAfter('input[type=password]');
+$('input[type=password]').addClass('hidden-pass-input')
+
+$('body').on('click', '.toggle-password-eye', function (e) {
+    let password = $(this).prev('.hidden-pass-input');
+
+    if (password.attr('type') === 'password') {
+        password.attr('type', 'text');
+        $(this).addClass('fa-eye').removeClass('fa-eye-slash');
+    } else {
+        password.attr('type', 'password');
+        $(this).addClass('fa-eye-slash').removeClass('fa-eye');
+    }
+})
+</script>

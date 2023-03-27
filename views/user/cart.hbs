@@ -1,0 +1,160 @@
+<style>
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #cd9cf2;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
+  }
+</style>
+<section>
+  <div class="gradient-custom" style="height: 35rem;">
+      <div class="container ">
+    <h4 class="mt-3 pt-4"><b>Cart</b></h4>
+    <div style="width: 150px;" class="row  ms-auto">
+
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col" class="text-center">Items</th>
+          <th scope="col" class="text-center">Title</th>
+          <th scope="col" class="text-center">Quantity</th>
+          <th scope="col" class="text-center">Price</th>
+
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {{#each product}}
+        <tr>
+         
+          <th scope="row">1</th>
+          <td class="text-center"> <img style="height: 60px; width: 40px; " src="/product-images/{{this.products._id}}.jpg">
+          </td>
+          <td class="text-center"> {{this.products.name}} </td>
+          
+          <td style="width: 11rem;">
+            <div class="d-flex pe-4" style="width: 10px; height: 40px;">
+              <button class="btn btn-outline-secondary px-3 me-2"
+                onclick="changeQuantity('{{this._id}}','{{this.products._id}}','{{../user}}',-1)">
+                <i class="fas fa-minus">-</i>
+              </button>
+              <button class="btn  px-3 me-2">
+                <span id="{{this.products._id}}">{{this.quantity}}</span>
+                {{!-- <i class="fas fa-minus"><b>{{this.quantity}}</b></i> --}}
+              </button>
+
+              <button class="btn btn-outline-secondary px-3 ms-2"
+                onclick="changeQuantity('{{this._id}}','{{this.products._id}}','{{../user}}',1)">
+                <i class="fas fa-plus">+</i>
+              </button>
+            </div>
+          </td>
+          <td class="text-center">₹{{this.products.prize}} </td>
+
+
+          <td class="ps-5">
+            <button onclick="removeProductitem('{{this._id}}','{{this.products._id}}','{{../user}}')" class="btn btn-danger text-white">
+              <b>Remove</b></button>
+          </td>
+          
+        </tr>
+        
+        {{/each}}
+
+
+      </tbody>
+    </table>
+    
+  <div class="container bg-light rounded-bottom py-4" id="zero-pad">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-10 col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="/" style="color: inherit;"><button class="btn btn-sm bg-secondary text-white px-lg-5 px-3" ><b>Go back</b></button></a>
+                </div>
+                <div class="px-md-0 px-1" id="footer-font">
+                    <b class="pl-md-4">SUBTOTAL <span class="pl-md-4" id="total"> ₹{{totalValue}}</span></b>
+                </div>
+                <div>
+                  <a href="/user-details" style="color: inherit;"><button class="btn btn-sm btn-secondary text-white px-lg-5 px-3" ><b>Place Order</b></button></a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  </div>
+  </div>
+  
+  
+
+  
+</section>
+
+
+<script>
+  function changeQuantity(cartid,proid,userid,count){
+    let quantity=parseInt(document.getElementById(proid).innerHTML)
+    count=parseInt(count)
+    $.ajax({
+      url:'/change-product-quantity',
+      data:{
+        user:userid,
+        cart:cartid,
+        products:proid,
+        count:count,
+        quantity:quantity
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.removeProduct){
+          alert("product removed from cart")
+          location.reload()
+        }else{
+          document.getElementById(proid).innerHTML=quantity+count
+          document.getElementById('total').innerHTML=response.total
+        }
+        
+          
+        
+      }
+      
+      })
+        
+    
+  }
+  function removeProductitem(cartid,proid,userid){
+   
+    $.ajax({
+      url:'/remove-Products',
+      data:{
+        user:userid,
+        cart:cartid,
+        products:proid
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.removeProduct){
+           alert("product removed from cart")
+          location.reload()
+        }
+         
+        
+        
+          
+        
+      }
+      
+      })
+        
+    
+  }
+  
+</script>

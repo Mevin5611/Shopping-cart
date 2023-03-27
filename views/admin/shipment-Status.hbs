@@ -1,0 +1,28 @@
+<style>
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #566586;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top left, rgb(72, 87, 110), rgba(246, 243, 255, 1))
+  }
+</style>
+<section class="d-flex align-items-center justify-content-center gradient-custom " style="height: 35rem;">
+    <div class="" style="height: 200px; width: 300px;">
+        <div class="text-center" >
+            <form action="/admin/shipment-Status/{{order._id}}" method="post">
+<select name="status" class="form-control-sm" aria-label="Default select example">
+  <option >select menu</option>
+  <option value="shipped" name="t3">shipped</option>
+  <option value="out for delivery" name="t2">out for delivery</option>
+  <option value="deliverd" name="t1">deliverd</option>
+</select>
+    <button type="submit" class="btn-sm btn btn-success">Update</button>
+</form>
+        </div>
+
+    </div>
+</section>
