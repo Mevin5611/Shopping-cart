@@ -237,6 +237,7 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             console.log(order, product, total);
+            const date= new Date()
             let status = order['payment-method'] === 'COD' ? 'placed' : 'pending'
             let orderObj = {
                 deliveryDetails: {
@@ -249,7 +250,7 @@ module.exports = {
                 product: product,
                 totalAmount: total,
                 status: status,
-                date: new Date()
+                date: date.toDateString()
                 
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
