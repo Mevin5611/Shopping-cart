@@ -135,11 +135,11 @@ router.post('/admin-login', (req, res) => {
 })
 router.get('/admin-logout', (req, res) => {
   req.session.admin=null
-  req.session.adminlogedInlogedIn=false
+  req.session.adminlogedIn=false
   res.redirect('/admin')
 })
 
-router.get('/admin-orders',averifyLogin,(req,res)=>{
+router.get('/admin-orders',averifyLogin,(req,res,next)=>{
   let superadmin = req.session.admin
    productdata.getPlacedOrders().then((orders)=>{
     
@@ -147,7 +147,7 @@ router.get('/admin-orders',averifyLogin,(req,res)=>{
    })
     
 })
-router.get('/shipment-Status/:id',averifyLogin, async (req, res) => {
+router.get('/shipment-Status/:id',averifyLogin, async (req, res,next) => {
   let superadmin = req.session.admin
   let order = await productdata.getOrderstatus(req.params.id)
   console.log("order",order);
@@ -166,7 +166,7 @@ router.post('/shipment-Status/:id', (req, res) => {
     res.redirect('/admin/admin-orders')
   })
 })
-router.get('/deliverd-orders',averifyLogin,(req,res)=>{
+router.get('/deliverd-orders',averifyLogin,(req,res,next)=>{
   let superadmin = req.session.admin
    productdata.getDeliverdOrders().then((orders)=>{
     if(superadmin){
@@ -176,7 +176,7 @@ router.get('/deliverd-orders',averifyLogin,(req,res)=>{
    })
     
 })
-router.get('/allOrders',averifyLogin,(req,res)=>{
+router.get('/allOrders',averifyLogin,(req,res,next)=>{
   let superadmin = req.session.admin
    productdata.getallOrders().then((orders)=>{
     if(superadmin){
